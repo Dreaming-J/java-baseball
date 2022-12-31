@@ -12,16 +12,16 @@ public class Ball {
         this.ballNo = ballNo;
     }
 
-    public BallStataus play(Ball ball) {
+    public BallStatus play(Ball ball) {
         if (this.equals(ball)) {
-            return BallStataus.STRIKE;
+            return BallStatus.STRIKE;
         }
 
         if (ball.matchBallNo(ballNo)) {
-            return BallStataus.BALL;
+            return BallStatus.BALL;
         }
 
-        return BallStataus.NOTHING;
+        return BallStatus.NOTHING;
     }
 
     private boolean matchBallNo(int ballNo) {

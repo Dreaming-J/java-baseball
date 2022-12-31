@@ -16,16 +16,16 @@ public class BallTest {
 
     @Test
     void strike() {
-        assertThat(com.play(new Ball(1, 4))).isEqualTo(BallStataus.STRIKE);
+        assertThat(com.play(new Ball(1, 4))).isEqualTo(BallStatus.STRIKE);
     }
 
     @Test
     void ball() {
-        assertThat(com.play(new Ball(2, 4))).isEqualTo(BallStataus.BALL);
+        assertThat(com.play(new Ball(2, 4))).isEqualTo(BallStatus.BALL);
     }
 
     @Test
     void nothing() {
-        assertThat(com.play(new Ball(2, 5))).isEqualTo(BallStataus.NOTHING);
+        assertThat(com.play(new Ball(2, 5))).isEqualTo(BallStatus.NOTHING);
     }
 }
