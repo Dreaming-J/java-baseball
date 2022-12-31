@@ -13,6 +13,18 @@ public class Balls {
                 .collect(Collectors.toList());
     }
 
+    public PlayResult play(List<Integer> balls) {
+        Balls userBalls = new Balls(balls);
+        PlayResult result = new PlayResult();
+
+        for (Ball answer : answers) {
+            BallStatus status = userBalls.play(answer);
+            result.report(status);
+        }
+
+        return result;
+    }
+
     public BallStatus play(Ball userBall) {
         return answers.stream()
                 .map(answer -> answer.play(userBall))
