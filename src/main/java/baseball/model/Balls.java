@@ -9,7 +9,7 @@ public class Balls {
 
     public Balls(List<Integer> answers) {
         this.answers = answers.stream()
-                .map(answer -> new Ball(answers.indexOf(answer) + 1, answer))
+                .map(answer -> new Ball(answers.indexOf(answer), answer))
                 .collect(Collectors.toList());
     }
 

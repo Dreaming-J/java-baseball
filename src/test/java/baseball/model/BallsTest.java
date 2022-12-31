@@ -54,16 +54,16 @@ public class BallsTest {
 
     @Test
     void strike() {
-        assertThat(answers.play(new Ball(1, 1))).isEqualTo(BallStatus.STRIKE);
+        assertThat(answers.play(new Ball(0, 1))).isEqualTo(BallStatus.STRIKE);
     }
 
     @Test
     void ball() {
-        assertThat(answers.play(new Ball(1, 2))).isEqualTo(BallStatus.BALL);
+        assertThat(answers.play(new Ball(0, 2))).isEqualTo(BallStatus.BALL);
     }
 
     @Test
     void nothing() {
-        assertThat(answers.play(new Ball(1, 4))).isEqualTo(BallStatus.NOTHING);
+        assertThat(answers.play(new Ball(0, 4))).isEqualTo(BallStatus.NOTHING);
     }
 }
