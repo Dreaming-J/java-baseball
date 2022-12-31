@@ -1,15 +1,17 @@
 package baseball.model;
 
+import baseball.model.subModel.BallNumber;
+
 import java.util.Objects;
 
 public class Ball {
 
     private final int position;
-    private final int ballNo;
+    private final BallNumber ballNo;
 
     public Ball(int position, int ballNo) {
         this.position = position;
-        this.ballNo = ballNo;
+        this.ballNo = new BallNumber(ballNo);
     }
 
     public BallStatus play(Ball ball) {
@@ -24,8 +26,8 @@ public class Ball {
         return BallStatus.NOTHING;
     }
 
-    private boolean matchBallNo(int ballNo) {
-        return this.ballNo == ballNo;
+    private boolean matchBallNo(BallNumber ballNo) {
+        return this.ballNo.equals(ballNo);
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Ball {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ball ball = (Ball) o;
-        return position == ball.position && ballNo == ball.ballNo;
+        return position == ball.position && Objects.equals(ballNo, ball.ballNo);
     }
 
     @Override
