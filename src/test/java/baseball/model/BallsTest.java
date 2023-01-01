@@ -18,7 +18,7 @@ public class BallsTest {
 
     @Test
     void play_3strike() {
-        PlayResult result = answers.play(List.of(1,2,3));
+        PlayResult result = answers.play(new Balls(List.of(1,2,3)));
         assertThat(result.getBall()).isEqualTo(0);
         assertThat(result.getStrike()).isEqualTo(3);
         assertThat(result.isContinue()).isFalse();
@@ -26,28 +26,28 @@ public class BallsTest {
 
     @Test
     void play_2strike() {
-        PlayResult result = answers.play(List.of(1,2,5));
+        PlayResult result = answers.play(new Balls(List.of(1,2,5)));
         assertThat(result.getBall()).isEqualTo(0);
         assertThat(result.getStrike()).isEqualTo(2);
     }
 
     @Test
     void play_2ball_1strike() {
-        PlayResult result = answers.play(List.of(1,3,2));
+        PlayResult result = answers.play(new Balls(List.of(1,3,2)));
         assertThat(result.getBall()).isEqualTo(2);
         assertThat(result.getStrike()).isEqualTo(1);
     }
 
     @Test
     void play_1ball_1strike() {
-        PlayResult result = answers.play(List.of(1,3,6));
+        PlayResult result = answers.play(new Balls(List.of(1,3,6)));
         assertThat(result.getBall()).isEqualTo(1);
         assertThat(result.getStrike()).isEqualTo(1);
     }
 
     @Test
     void play_nothing() {
-        PlayResult result = answers.play(List.of(4,5,6));
+        PlayResult result = answers.play(new Balls(List.of(4,5,6)));
         assertThat(result.getBall()).isEqualTo(0);
         assertThat(result.getStrike()).isEqualTo(0);
     }

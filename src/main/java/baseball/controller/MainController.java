@@ -27,7 +27,7 @@ public class MainController extends RepeatModule {
         init();
 
         while (result.isContinue()) {
-            List<Integer> inputBalls = repeat(inputView::readBallNumber);
+            Balls inputBalls = repeat(inputView::readBallNumber);
             result = computer.play(inputBalls);
 
             outputView.printPlayResult(result);

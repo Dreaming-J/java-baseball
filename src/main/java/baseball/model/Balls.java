@@ -22,8 +22,7 @@ public class Balls {
         }
     }
 
-    public PlayResult play(List<Integer> balls) {
-        Balls userBalls = new Balls(balls);
+    public PlayResult play(Balls userBalls) {
         PlayResult result = new PlayResult();
 
         for (Ball answer : answers) {
