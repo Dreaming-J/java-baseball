@@ -3,13 +3,14 @@ package baseball.controller;
 import baseball.model.Balls;
 import baseball.model.PlayResult;
 import baseball.model.RetryOption;
+import baseball.module.RepeatModule;
 import baseball.util.RandomGenerator;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
 import java.util.List;
 
-public class MainController {
+public class MainController extends RepeatModule {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -26,7 +27,7 @@ public class MainController {
         init();
 
         while (result.isContinue()) {
-            List<Integer> inputBalls = inputView.readBallNumber();
+            List<Integer> inputBalls = repeat(inputView::readBallNumber);
             result = computer.play(inputBalls);
 
             outputView.printPlayResult(result);
@@ -38,7 +39,7 @@ public class MainController {
     private void end() {
         outputView.printGameEnd();
 
-        RetryOption option = inputView.readRetryCommand();
+        RetryOption option = repeat(inputView::readRetryCommand);
 
         if (option.isRetry()) {
             start();
