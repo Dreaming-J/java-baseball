@@ -20,4 +20,8 @@ public enum RetryOption {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(WRONG_COMMAND_INPUT));
     }
+
+    public boolean isRetry() {
+        return this == RETRY;
+    }
 }

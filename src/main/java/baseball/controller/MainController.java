@@ -2,6 +2,7 @@ package baseball.controller;
 
 import baseball.model.Balls;
 import baseball.model.PlayResult;
+import baseball.model.RetryOption;
 import baseball.util.RandomGenerator;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -37,5 +38,10 @@ public class MainController {
     private void end() {
         outputView.printGameEnd();
 
+        RetryOption option = inputView.readRetryCommand();
+
+        if (option.isRetry()) {
+            start();
+        }
     }
 }
