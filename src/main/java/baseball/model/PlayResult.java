@@ -1,5 +1,7 @@
 package baseball.model;
 
+import static baseball.model.Balls.BALLS_SIZE;
+
 public class PlayResult {
 
     private int ball = 0;
@@ -22,7 +24,7 @@ public class PlayResult {
         }
     }
 
-    public boolean isGameEnd() {
-        return this.strike == 3;
+    public boolean isContinue() {
+        return this.strike != BALLS_SIZE;
     }
 }

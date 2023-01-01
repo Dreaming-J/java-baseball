@@ -21,7 +21,7 @@ public class BallsTest {
         PlayResult result = answers.play(List.of(1,2,3));
         assertThat(result.getBall()).isEqualTo(0);
         assertThat(result.getStrike()).isEqualTo(3);
-        assertThat(result.isGameEnd()).isTrue();
+        assertThat(result.isContinue()).isFalse();
     }
 
     @Test
