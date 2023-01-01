@@ -27,6 +27,8 @@ public class MainController {
         while (result.isContinue()) {
             List<Integer> inputBalls = inputView.readBallNumber();
             result = computer.play(inputBalls);
+
+            outputView.printPlayResult(result);
         }
     }
 }
