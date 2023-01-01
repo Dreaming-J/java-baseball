@@ -1,7 +1,5 @@
 package baseball.model;
 
-import baseball.model.subModel.BallNumber;
-
 import java.util.Objects;
 
 public class Ball {

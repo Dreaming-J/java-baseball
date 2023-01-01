@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Balls {
 
-    public static final String WRONG_BALLS_NUMBER_TYPE = "볼 숫자는 서로 다른 3자리 숫자여야 합니다.";
+    private static final String WRONG_BALLS_NUMBER_TYPE = "볼 숫자는 서로 다른 3자리 숫자여야 합니다.";
     public static final int BALLS_SIZE = 3;
     private final List<Ball> answers;
 

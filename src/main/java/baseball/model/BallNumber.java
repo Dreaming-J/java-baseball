@@ -1,4 +1,4 @@
-package baseball.model.subModel;
+package baseball.model;
 
 import java.util.Objects;
 
