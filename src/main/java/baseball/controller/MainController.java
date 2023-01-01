@@ -30,5 +30,12 @@ public class MainController {
 
             outputView.printPlayResult(result);
         }
+
+        end();
+    }
+
+    private void end() {
+        outputView.printGameEnd();
+
     }
 }
