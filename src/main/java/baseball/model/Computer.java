@@ -23,7 +23,7 @@ public class Computer extends NotModule {
 
         return ball;
     }
-
+  
     public int calStrike(List<Integer> userNumber) {
         int strike = 0;
         for (int number : userNumber) {
@@ -34,7 +34,7 @@ public class Computer extends NotModule {
 
         return strike;
     }
-
+  
     public boolean isBall(int number, int index) {
         return computerNumber.contains(number) && not(Objects.equals(computerNumber.indexOf(number), index));
     }
