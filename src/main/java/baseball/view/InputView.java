@@ -1,30 +1,26 @@
 package baseball.view;
 
-import baseball.utils.TypeConverter;
+import baseball.model.Balls;
+import baseball.model.RetryOption;
+import baseball.util.TypeConverter;
+
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
 public class InputView {
 
-    private static final String MSG_INPUT_NUMBER = "숫자를 입력해주세요 : ";
-    private static final String MSG_INPUT_RETRY = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+    private static final String BALL_NUMBER_INPUT_MSG = "숫자를 입력해주세요 : ";
+    private static final String RETRY_INPUT_MSG = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
-    private final InputValidator inputValidator = new InputValidator();
-
-    public List<Integer> readUserNumber() {
-        System.out.print(MSG_INPUT_NUMBER);
-        List<Integer> userNumber = TypeConverter.convertStringToIntList(Console.readLine());
-        inputValidator.validateUserNumber(userNumber);
-
-        return userNumber;
+    public Balls readBallNumber() {
+        System.out.print(BALL_NUMBER_INPUT_MSG);
+        List<Integer> userNumbers = TypeConverter.toList(Console.readLine());
+        return new Balls(userNumbers);
     }
 
-    public String readRetry() {
-        System.out.println(MSG_INPUT_RETRY);
-        String retry = Console.readLine();
-        inputValidator.validateRetry(retry);
-
-        return retry;
+    public RetryOption readRetryCommand() {
+        System.out.println(RETRY_INPUT_MSG);
+        return RetryOption.from(Console.readLine());
     }
 }
