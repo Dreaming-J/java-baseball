@@ -1,52 +1,49 @@
 package baseball.model;
 
+import baseball.module.NotModule;
+
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
-public class Computer {
+public class Computer extends NotModule {
 
-    private final List<Integer> computerNumber;
-    private List<Integer> userNumber;
+    private List<Integer> computerNumber;
 
-    public Computer(List<Integer> number) {
-        this.computerNumber = number;
+    public Computer(List<Integer> computerNumber) {
+        this.computerNumber = computerNumber;
     }
 
-    public boolean isInGame() {
-        return !this.computerNumber.equals(this.userNumber);
-    }
-
-    public void setUserNumber(List<Integer> userNumber) {
-        this.userNumber = userNumber;
-    }
-
-    public int calBall() {
+    public int calBall(List<Integer> userNumber) {
         int ball = 0;
-        for (int number : this.userNumber) {
-            if (isBall(number)) {
+        for (int number : userNumber) {
+            if (isBall(number, userNumber.indexOf(number))) {
                 ball++;
             }
         }
 
         return ball;
     }
-
-    public int calStrike() {
+  
+    public int calStrike(List<Integer> userNumber) {
         int strike = 0;
-        for (int number : this.userNumber) {
-            if (isStrike(number)) {
+        for (int number : userNumber) {
+            if (isStrike(number, userNumber.indexOf(number))) {
                 strike++;
             }
         }
 
         return strike;
     }
-
-    private boolean isBall(int number) {
-        return computerNumber.contains(number) && !(computerNumber.indexOf(number) == userNumber.indexOf(number));
+  
+    public boolean isBall(int number, int index) {
+        return computerNumber.contains(number) && not(Objects.equals(computerNumber.indexOf(number), index));
     }
 
-    private boolean isStrike(int number) {
-        return computerNumber.indexOf(number) == userNumber.indexOf(number);
+    public boolean isStrike(int number, int index) {
+        return Objects.equals(computerNumber.indexOf(number), index);
+    }
+
+    public boolean isContinue(List<Integer> userNumber) {
+        return not(Objects.equals(computerNumber, userNumber));
     }
 }

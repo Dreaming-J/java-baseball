@@ -1,27 +1,37 @@
 package baseball.view;
 
-import static baseball.enums.OutputMsg.*;
-
 public class OutputView {
 
-    public void printStart() {
-        System.out.println(OUTPUT_MSG_START_GAME.get());
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String MSG_GAME_START = "숫자 야구 게임을 시작합니다.";
+    private static final String NOTHING = "낫싱";
+    private static final String BALL = "볼 ";
+    private static final String STRIKE = "스트라이크";
+    private static final String MSG_GAME_OVER = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+    private static final int ZERO = 0;
+
+    public void printErrorMsg(String message) {
+        System.out.println(ERROR_PREFIX + message);
     }
 
-    public void printResult(int ball, int strike) {
-        if (ball == 0 && strike == 0) {
-            System.out.print(OUTPUT_MSG_NOTHING.get());
-        }
-        if (ball > 0) {
-            System.out.print(ball + OUTPUT_MSG_BALL.get() + " ");
-        }
-        if (strike > 0) {
-            System.out.print(strike + OUTPUT_MSG_STRIKE.get());
-        }
-        System.out.println("");
+    public void printGameStart() {
+        System.out.println(MSG_GAME_START);
     }
 
-    public void printEnd() {
-        System.out.println(OUTPUT_MSG_END_GAME.get());
+    public void printCompareResult(int ball, int strike) {
+        if (ball == ZERO && strike == ZERO) {
+            System.out.print(NOTHING);
+        }
+        if (ball != ZERO) {
+            System.out.print(ball + BALL);
+        }
+        if (strike != ZERO) {
+            System.out.print(strike + STRIKE);
+        }
+        System.out.println();
+    }
+
+    public void printGameOver() {
+        System.out.println(MSG_GAME_OVER);
     }
 }

@@ -1,51 +1,46 @@
 package baseball.controller;
 
-import baseball.RandomNumberGenerator;
-import baseball.controller.InputController;
+import baseball.enums.RetryOption;
 import baseball.model.Computer;
+import baseball.module.RepeatModule;
+import baseball.utils.RandomGenerator;
 import baseball.view.InputView;
 import baseball.view.OutputView;
-import baseball.enums.Constant;
 
 import java.util.List;
+import java.util.Objects;
 
-public class GameController {
+public class GameController extends RepeatModule {
 
-    private static final String RETRY = "1";
-
-    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-    private final InputController inputController = new InputController();
+    private Computer computer;
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
-    private Computer computer;
+    public void init() {
+        outputView.printGameStart();
 
-
-    public void gameInit() {
-        outputView.printStart();
-
-        gameStart();
+        start();
     }
 
-    private void gameStart() {
-        this.computer = new Computer(randomNumberGenerator.createRandomNumber(Constant.GAME_NUMBER_SIZE.get()));
+    public void start() {
+        computer = new Computer(RandomGenerator.randomComputerNumber());
+        List<Integer> userNumber;
+        do {
+            userNumber = repeat(inputView::readUserNumber);
+            int ball = computer.calBall(userNumber);
+            int strike = computer.calStrike(userNumber);
+            outputView.printCompareResult(ball, strike);
+        } while (computer.isContinue(userNumber));
 
-        while (computer.isInGame()) {
-            List<Integer> userNumber = inputController.inputUserNumber();
-            computer.setUserNumber(userNumber);
-
-            outputView.printResult(computer.calBall(), computer.calStrike());
-        }
-
-        gameEnd();
+        restart();
     }
 
-    private void gameEnd() {
-        outputView.printEnd();
+    public void restart() {
+        outputView.printGameOver();
+        String retry = repeat(inputView::readRetry);
 
-        String retry = inputController.inputRetry();
-        if (retry.equals(RETRY)) {
-            gameStart();
+        if (Objects.equals(RetryOption.RETRY.get(), retry)) {
+            start();
         }
     }
 }
